@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_ENHO" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <TOOL>BADI_IMPL</TOOL>
+   <SHORTTEXT>Enhancement Implementation Google Sheets</SHORTTEXT>
+   <SPOT_NAME>SALV_JBP_ENH_DATA_PUBLISHER</SPOT_NAME>
+   <IMPL>
+    <ENH_BADI_IMPL_DATA>
+     <SPOT_NAME>SALV_JBP_ENH_DATA_PUBLISHER</SPOT_NAME>
+     <BADI_NAME>SALV_JPB_BADI_DATA_PUBLISHER</BADI_NAME>
+     <IMPL_NAME>Z_SALV_BADI_GOOGLE_SHEETS</IMPL_NAME>
+     <IMPL_CLASS>ZCL_SALV_ENH_GOOGLE_SHEETS</IMPL_CLASS>
+     <ACTIVE>X</ACTIVE>
+     <IMPL_SHORTTEXT>Implementation: BAdi Definition ALV Data Publisher</IMPL_SHORTTEXT>
+     <IMPL_SHORTTEXT_ID>00505695007C1EE7BDBC29D65134BA60</IMPL_SHORTTEXT_ID>
+     <LOCKED_IN_CUSTOMIZING>X</LOCKED_IN_CUSTOMIZING>
+    </ENH_BADI_IMPL_DATA>
+   </IMPL>
+  </asx:values>
+ </asx:abap>
+</abapGit>
