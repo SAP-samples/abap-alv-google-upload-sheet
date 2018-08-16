@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_ENHO" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <TOOL>BADI_IMPL</TOOL>
+   <SHORTTEXT>ALV Google Sheets</SHORTTEXT>
+   <SPOT_NAME>ZIF_ALV_ENH_GOOGLE_SHEETS</SPOT_NAME>
+   <IMPL>
+    <ENH_BADI_IMPL_DATA>
+     <SPOT_NAME>ZIF_ALV_ENH_GOOGLE_SHEETS</SPOT_NAME>
+     <BADI_NAME>ZALV_BADI_GOOGLE_SHEETS</BADI_NAME>
+     <IMPL_NAME>ZIF_ALV_ENH_GOOGLE_SHEETS</IMPL_NAME>
+     <IMPL_CLASS>ZCL_SALV_BADI_GOOGLE_SHEETS</IMPL_CLASS>
+     <IS_DEFAULT>X</IS_DEFAULT>
+     <IMPL_SHORTTEXT>Google Sheets</IMPL_SHORTTEXT>
+     <IMPL_SHORTTEXT_ID>005056A533E71ED7A18450FD0B019360</IMPL_SHORTTEXT_ID>
+    </ENH_BADI_IMPL_DATA>
+   </IMPL>
+  </asx:values>
+ </asx:abap>
+</abapGit>

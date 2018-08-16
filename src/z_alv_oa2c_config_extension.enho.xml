@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_ENHO" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <TOOL>BADI_IMPL</TOOL>
+   <SHORTTEXT>ALV OAuth 2.0 Client Configuration Extension Implementation</SHORTTEXT>
+   <SPOT_NAME>OA2C_CONFIG_EXTENSION</SPOT_NAME>
+   <IMPL>
+    <ENH_BADI_IMPL_DATA>
+     <SPOT_NAME>OA2C_CONFIG_EXTENSION</SPOT_NAME>
+     <BADI_NAME>OA2C_CONFIG_EXTENSION_BADI_DEF</BADI_NAME>
+     <IMPL_NAME>Z_ALV_OA2C_CE_ZGOOGLE</IMPL_NAME>
+     <IMPL_CLASS>ZCL_OA2C_CE_ZGOOGLE</IMPL_CLASS>
+     <ACTIVE>X</ACTIVE>
+     <FILTER_ROOT>
+      <ENH_BADIIMPL_FILTER_ROOT>
+       <ROOT>1</ROOT>
+       <FILTERS>
+        <ENH_BADIIMPL_FILTER_ID>
+         <FILTER_NAME>CONFIG_EXTENSION</FILTER_NAME>
+         <ID>1</ID>
+        </ENH_BADIIMPL_FILTER_ID>
+       </FILTERS>
+      </ENH_BADIIMPL_FILTER_ROOT>
+     </FILTER_ROOT>
+     <FILTER_VALUES>
+      <ENH_BADIIMPL_FILTER_VALUE>
+       <ID>1</ID>
+       <FILTER_NAME>CONFIG_EXTENSION</FILTER_NAME>
+       <FILTER_TYPE>C</FILTER_TYPE>
+       <COMPARE>=</COMPARE>
+       <FILTER_CHAR_VALUE1>ZGOOGLE</FILTER_CHAR_VALUE1>
+      </ENH_BADIIMPL_FILTER_VALUE>
+     </FILTER_VALUES>
+     <FILTERS>
+      <ENH_BADI_FILTER_IMPL>
+       <DISJ_IDX>1</DISJ_IDX>
+       <CONJ_IDX>1</CONJ_IDX>
+       <FILTER_NAME>CONFIG_EXTENSION</FILTER_NAME>
+       <FILTER_TYPE>C</FILTER_TYPE>
+       <COMPARE>=</COMPARE>
+       <FILTER_CHAR_VALUE1>ZGOOGLE</FILTER_CHAR_VALUE1>
+      </ENH_BADI_FILTER_IMPL>
+     </FILTERS>
+     <IMPL_SHORTTEXT>Implementation: OAuth 2.0 Client Configuration Extension</IMPL_SHORTTEXT>
+     <IMPL_SHORTTEXT_ID>00505695007C1EE7A29BA343BEC29218</IMPL_SHORTTEXT_ID>
+    </ENH_BADI_IMPL_DATA>
+   </IMPL>
+  </asx:values>
+ </asx:abap>
+</abapGit>
