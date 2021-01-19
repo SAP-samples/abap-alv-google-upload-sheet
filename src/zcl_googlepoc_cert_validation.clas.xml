@@ -4,7 +4,6 @@
   <asx:values>
    <VSEOCLASS>
     <CLSNAME>ZCL_GOOGLEPOC_CERT_VALIDATION</CLSNAME>
-    <VERSION>1</VERSION>
     <LANGU>E</LANGU>
     <DESCRIPT>Validates a Google certificate in the PSE</DESCRIPT>
     <STATE>1</STATE>
