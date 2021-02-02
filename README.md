@@ -1,13 +1,8 @@
-![](https://img.shields.io/badge/STATUS-NOT%20CURRENTLY%20MAINTAINED-red.svg?longCache=true&style=flat)
-
-# Important Notice
-This public repository is read-only and no longer maintained.
-
 # Description
 
 This project comprises an archive containing sample source code for the integration of Google Sheets into the ABAP List Viewer (ALV) component. Thus, this sample code helps you to implement and configure the export of ALV grid data from SAP GUI directly to Google Drive and display exported data snapshots automatically in Google Sheets.
 
-## Minimum Requirements
+# Minimum Requirements
 
 - This functionality is only available for certain SAP NetWeaver support packages, see [note 2592115](http://service.sap.com/sap/support/notes/2592115).
 - After installation of the corresponding Support Package, it is **mandatory** to implement [note 2624404](http://service.sap.com/sap/support/notes/2624404) (ALV GUI: BAdi Export Integration Corrections).
