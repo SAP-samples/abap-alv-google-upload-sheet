@@ -27,7 +27,7 @@ See the full documentation [Export of ALV Grid Data to Google Sheets](https://ww
 # Limitations
 
 - The redirect URL called by Google requires a public domain server. 
-- There is no way to use Enterprise user or SSO – every user needs a regular Google account.
+- There is no way to use an Enterprise account or logon to Google sheets via SSO  – every end user needs a regular Google account.
 
 
 # Known Issues
