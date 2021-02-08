@@ -24,6 +24,12 @@ This project comprises an archive containing sample source code for the integrat
 
 See the full documentation [Export of ALV Grid Data to Google Sheets](https://www.sap.com/documents/2018/07/56e0dd6d-0f7d-0010-87a3-c30de2ffd8ff.html) available in the SAP Community.
 
+# Limitations
+
+- The redirect URL called by Google requires a public domain server. 
+- There is no way to use Enterprise user or SSO – every user needs a regular Google account.
+
+
 # Known Issues
 
 None.
