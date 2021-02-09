@@ -19,7 +19,6 @@ This project comprises an archive containing sample source code for the integrat
 6. Check the Connection (see chapter 2.5. [Export of ALV Grid Data to Google Sheets](https://www.sap.com/documents/2018/07/56e0dd6d-0f7d-0010-87a3-c30de2ffd8ff.html))
 7. ALV ABAP administration (see chapter 3.2 [Export of ALV Grid Data to Google Sheets](https://www.sap.com/documents/2018/07/56e0dd6d-0f7d-0010-87a3-c30de2ffd8ff.html))
 
-
 # Configuration Guide
 
 See the full documentation [Export of ALV Grid Data to Google Sheets](https://www.sap.com/documents/2018/07/56e0dd6d-0f7d-0010-87a3-c30de2ffd8ff.html) available in the SAP Community.
@@ -28,7 +27,6 @@ See the full documentation [Export of ALV Grid Data to Google Sheets](https://ww
 
 - The redirect URL called by Google requires a public domain server. 
 - There is no way to use an Enterprise account or logon to Google Drive via SSO  – every end user needs a regular Google account.
-
 
 # Known Issues
 
@@ -39,6 +37,10 @@ None.
 You can ask your questions concerning this functionality in the [SAP Community](https://www.sap.com/community.html). Please, use _ABAP Development_ as primary tag and choose _alv_ as additional user tag.
 
 You find an overview of all ALV questions under: [https://answers.sap.com/topics/alv.html](https://answers.sap.com/topics/alv.html).
+
+# Contribution
+
+An SAP Code Sample such as this is open software but is not quite a typical full-blown open source project. If you come across a problem, we’d encourage you to check the project’s [issue tracker](https://github.com/SAP-samples/abap-alv-google-upload-sheet/issues) and to [file a new issue](https://github.com/SAP-samples/abap-alv-google-upload-sheet/issues/new) if needed. If you are especially passionate about something you’d like to improve, you are welcome to fork the repository and submit improvements or changes as a pull request.
 
 # License
 Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
