@@ -43,7 +43,7 @@ You find an overview of all ALV questions under: [https://answers.sap.com/topics
 An SAP Code Sample such as this is open software but is not quite a typical full-blown open source project. If you come across a problem, we’d encourage you to check the project’s [issue tracker](https://github.com/SAP-samples/abap-alv-google-upload-sheet/issues) and to [file a new issue](https://github.com/SAP-samples/abap-alv-google-upload-sheet/issues/new) if needed. If you are especially passionate about something you’d like to improve, you are welcome to fork the repository and submit improvements or changes as a pull request.
 
 # License
-Copyright (c) 2018 SAP SE or an SAP affiliate company. All rights reserved.
+Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
 
 This file is licensed under the SAP SAMPLE CODE LICENSE AGREEMENT except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
 
