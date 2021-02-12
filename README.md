@@ -48,3 +48,5 @@ Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
 This file is licensed under the SAP SAMPLE CODE LICENSE AGREEMENT except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
 
 Note that the sample code includes calls to the Google Drive APIs which calls are licensed under the Creative Commons Attribution 3.0 License _(_[_https://creativecommons.org/licenses/by/3.0/_](https://creativecommons.org/licenses/by/3.0/)_)_ in accordance with Google&#39;s Developer Site Policies _(_[_https://developers.google.com/terms/site-policies_](https://developers.google.com/terms/site-policies)_)._ Furthermore, the use of the Google Drive service is subject to applicable agreements with Google Inc.
+
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/abap-alv-google-upload-sheet)](https://api.reuse.software/info/github.com/SAP-samples/abap-alv-google-upload-sheet)
