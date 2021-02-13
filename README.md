@@ -1,3 +1,5 @@
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/abap-alv-google-upload-sheet)](https://api.reuse.software/info/github.com/SAP-samples/abap-alv-google-upload-sheet)
+
 # Description
 
 This project comprises an archive containing sample source code for the integration of Google Sheets into the ABAP List Viewer (ALV) component. Thus, this sample code helps you to implement and configure the export of ALV grid data from SAP GUI directly to Google Drive and display exported data snapshots automatically in Google Sheets.
@@ -49,4 +51,3 @@ This file is licensed under the SAP SAMPLE CODE LICENSE AGREEMENT except as note
 
 Note that the sample code includes calls to the Google Drive APIs which calls are licensed under the Creative Commons Attribution 3.0 License _(_[_https://creativecommons.org/licenses/by/3.0/_](https://creativecommons.org/licenses/by/3.0/)_)_ in accordance with Google&#39;s Developer Site Policies _(_[_https://developers.google.com/terms/site-policies_](https://developers.google.com/terms/site-policies)_)._ Furthermore, the use of the Google Drive service is subject to applicable agreements with Google Inc.
 
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/abap-alv-google-upload-sheet)](https://api.reuse.software/info/github.com/SAP-samples/abap-alv-google-upload-sheet)
