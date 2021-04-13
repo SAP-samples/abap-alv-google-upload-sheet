@@ -36,6 +36,8 @@ None.
 
 # How to obtain support
 
+No SAP standard support provided : check SAP [note 2896606](http://service.sap.com/sap/support/notes/2896606) for details.
+
 You can ask your questions concerning this functionality in the [SAP Community](https://www.sap.com/community.html). Please, use _ABAP Development_ as primary tag and choose _alv_ as additional user tag.
 
 You find an overview of all ALV questions under: [https://answers.sap.com/topics/alv.html](https://answers.sap.com/topics/alv.html).
