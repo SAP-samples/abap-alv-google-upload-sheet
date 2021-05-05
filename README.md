@@ -27,7 +27,7 @@ See the full documentation [Export of ALV Grid Data to Google Sheets](https://ww
 
 # Limitations
 
-- The redirect URL called by Google requires a public domain server. 
+- The redirect URL called by Google requires a public top level domain server. 
 - There is no way to use an Enterprise account or logon to Google Drive via SSO  – every end user needs a regular Google account.
 
 # Known Issues
@@ -36,7 +36,7 @@ None.
 
 # How to obtain support
 
-No SAP standard support provided : check SAP [note 2896606](http://service.sap.com/sap/support/notes/2896606) for details.
+**No SAP standard support** provided: Consult **SAP [note 2896606](http://service.sap.com/sap/support/notes/2896606) for details**.
 
 You can ask your questions concerning this functionality in the [SAP Community](https://www.sap.com/community.html). Please, use _ABAP Development_ as primary tag and choose _alv_ as additional user tag.
 
@@ -52,4 +52,3 @@ Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
 This file is licensed under the SAP SAMPLE CODE LICENSE AGREEMENT except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
 
 Note that the sample code includes calls to the Google Drive APIs which calls are licensed under the Creative Commons Attribution 3.0 License _(_[_https://creativecommons.org/licenses/by/3.0/_](https://creativecommons.org/licenses/by/3.0/)_)_ in accordance with Google&#39;s Developer Site Policies _(_[_https://developers.google.com/terms/site-policies_](https://developers.google.com/terms/site-policies)_)._ Furthermore, the use of the Google Drive service is subject to applicable agreements with Google Inc.
-
