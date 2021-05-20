@@ -3,8 +3,22 @@
 "! </p>
 "!
 "! <p>
-"! Author:  Klaus-Dieter Scherer, SAP SE <br/>
-"! Version: 0.0.4<br/>
+"! See https://developers.google.com/drive/
+"! </p>
+"!
+"! <p>
+"! Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
+"! <br>
+"! This file is licensed under the SAP SAMPLE CODE LICENSE AGREEMENT except as noted otherwise in
+"! the LICENSE FILE
+"! (https://github.com/SAP-samples/abap-alv-google-upload-sheet/blob/master/LICENSES/Apache-2.0.txt).
+"! <br>
+"! <br>
+"! Note that the sample code includes calls to the Google Drive APIs which calls are licensed under
+"! the Creative Commons Attribution 3.0 License (https://creativecommons.org/licenses/by/3.0/) in
+"! accordance with Google's Developer Site Policies
+"! (https://developers.google.com/terms/site-policies). Furthermore, the use of the Google Drive
+"! service is subject to applicable agreements with Google Inc.
 "! </p>
 class zcl_salv_enh_google_sheets definition
   public
@@ -17,40 +31,64 @@ class zcl_salv_enh_google_sheets definition
     interfaces if_badi_interface.
     interfaces if_salv_jpb_badi_data_publish.
 
+    aliases get_authentication_type
+      for if_salv_jpb_badi_data_publish~get_authentication_type.
+    aliases get_binary_data_to_publish
+      for if_salv_jpb_badi_data_publish~get_binary_data_to_publish.
+    aliases get_destination_type
+      for if_salv_jpb_badi_data_publish~get_destination_type.
+    aliases get_executable_location
+      for if_salv_jpb_badi_data_publish~get_executable_location.
+    aliases get_file_download_info
+      for if_salv_jpb_badi_data_publish~get_file_download_info.
+    aliases get_item_descriptor
+      for if_salv_jpb_badi_data_publish~get_item_descriptor.
+    aliases get_oa2c_auth_ingredients
+      for if_salv_jpb_badi_data_publish~get_oa2c_auth_ingredients.
+    aliases get_target_url_to_launch
+      for if_salv_jpb_badi_data_publish~get_target_url_to_launch.
+    aliases is_connection_established
+      for if_salv_jpb_badi_data_publish~is_connection_established.
+
 
   private section.
 
     "! The name of the default target Google Drive folder to upload to.
-    constants c_target_folder type zif_googlepoc_drive_api=>y_name
-      value `SAP Exports`.                                  "#EC NOTEXT
+    constants target_folder type zif_googlepoc_drive_api=>file_resource_name value
+      `SAP Exports` ##NO_TEXT.
+
+    "! The mime type of an <em>Office Open XML Spreadsheet</em> file.
+    constants xlsx_mime_type type string value
+      `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet` ##NO_TEXT.
 
     "! The default OAuth 2.0 profile to use.
-    data oa2c_profile_name type oa2c_profile
-      value 'Z_GOOGLE_SHEETS'.                              "#EC NOTEXT
+    data oa2c_profile_name type oa2c_profile value 'Z_GOOGLE_SHEETS' ##NO_TEXT.
 
     "! The OAuth 2.0 authorization grant application URL.
     data oa2c_auth_application type string
-      value `https://dev.sap.com:44333/sap/bc/sec/oauth2/client/grant/authorization`. "#EC NOTEXT
+      value `https://dev.sap.com:44333/sap/bc/sec/oauth2/client/grant/authorization` ##NO_TEXT.
 
     "! The binary data to publish.
-    data mr_binary_data_to_publish  type ref to xstring.
+    data binary_data_to_publish  type ref to xstring.
 
-    "! The Google Drive client API.
-    data mo_drive_api type ref to zif_googlepoc_drive_api.
+    "! The Google Drive Client API.
+    data drive_api type ref to zif_googlepoc_drive_api.
 
     "! Gets the ID of the folder with the given name from the Google Drive.
     "!
-    "! @parameter iv_folder_name | The name of the folder.
-    "! @parameter iv_create_if_not_existing | abap_true to create the folder
-    "! if it does not exist yet; abap_false to not create it.
-    "! @parameter rv_folder_id | The ID of the folder; initial if no folder with
-    "! that name exists.
+    "! @parameter folder_name | The name of the folder.
+    "! @parameter create_if_not_existing | <em>abap_true</em> to create the folder if it does not
+    "! exist yet; <em>abap_false</em> to not create it.
+    "! @parameter result | The ID of the folder; <em>initial</em> if no folder with that name
+    "! exists.
     methods get_drive_folder_id
       importing
-        iv_folder_name            type zif_googlepoc_drive_api=>y_name default c_target_folder
-        iv_create_if_not_existing type abap_bool default abap_true
+        folder_name            type zif_googlepoc_drive_api=>file_resource_name
+          default target_folder
+        create_if_not_existing type abap_bool default abap_true
       returning
-        value(rv_folder_id)       type zif_googlepoc_drive_api=>y_id.
+        value(result)          type zif_googlepoc_drive_api=>file_resource_id.
+
 
 endclass.
 
@@ -59,33 +97,26 @@ class zcl_salv_enh_google_sheets implementation.
 
 
   method get_drive_folder_id.
-    data(lt_folder_resources) = me->mo_drive_api->get_files_metadata(
-      iv_name      = iv_folder_name
-      iv_mime_type = zif_googlepoc_drive_api=>cs_mime_type-folder
-    ).
-    if lt_folder_resources is initial.
-      if iv_create_if_not_existing = abap_true.
-        "Create target folder if not existing yet.
-        data(ls_folder_resource) = me->mo_drive_api->create_file_metadata(
-          iv_name      = iv_folder_name
-          iv_mime_type = zif_googlepoc_drive_api=>cs_mime_type-folder
-        ).
+    data folder type zif_googlepoc_drive_api=>file_resource.
+    data(folder_resources) = me->drive_api->get_files_metadata(
+                               name      = folder_name
+                               mime_type = zif_googlepoc_drive_api=>supported_mime_types-folder ).
+    if folder_resources is initial.
+      if create_if_not_existing = abap_true.
+        folder = me->drive_api->create_file_metadata(
+                   name      = folder_name
+                   mime_type = zif_googlepoc_drive_api=>supported_mime_types-folder ).
       endif.
     else.
-      ls_folder_resource = lt_folder_resources[ 1 ].
+      folder = folder_resources[ 1 ].
     endif.
 
-    rv_folder_id = ls_folder_resource-id.
-  endmethod.
-
-
-  method if_salv_jpb_badi_data_publish~get_authentication_type.
-    return. "Default
+    result = folder-id.
   endmethod.
 
 
   method if_salv_jpb_badi_data_publish~get_binary_data_to_publish.
-    me->mr_binary_data_to_publish = r_binary_data_to_publish.
+    me->binary_data_to_publish = r_binary_data_to_publish.
   endmethod.
 
 
@@ -94,20 +125,10 @@ class zcl_salv_enh_google_sheets implementation.
   endmethod.
 
 
-  method if_salv_jpb_badi_data_publish~get_executable_location.
-    return.
-  endmethod.
-
-
-  method if_salv_jpb_badi_data_publish~get_file_download_info.
-    return.
-  endmethod.
-
-
   method if_salv_jpb_badi_data_publish~get_item_descriptor.
-    "Please take branding aspects into account:
-    "https://developers.google.com/drive/v3/web/branding
-    text                  = |Google Sheets|.                "#EC NOTEXT
+    "Please take branding aspects into account.
+    "See https://developers.google.com/drive/v3/web/branding for more information.
+    text                  = |Google Sheets| ##NO_TEXT.
     frontend              = if_salv_jpb_data_publisher=>cs_frontend-google_sheets.
     is_default_for_format = abap_true.
     xml_type              = if_salv_bs_xml=>c_type_xlsx.
@@ -122,53 +143,61 @@ class zcl_salv_enh_google_sheets implementation.
 
 
   method if_salv_jpb_badi_data_publish~get_target_url_to_launch.
-    data lv_is_connection_established type abap_bool.
-    if_salv_jpb_badi_data_publish~is_connection_established(
-      changing
-        is_connection_established = lv_is_connection_established
-    ).
-    if lv_is_connection_established = abap_true.
-      data(lv_parent_folder_id) = me->get_drive_folder_id( ).
-      data lt_parent_folder_ids type zif_googlepoc_drive_api=>yt_id.
-      if lv_parent_folder_id is not initial.
-        append lv_parent_folder_id to lt_parent_folder_ids.
+    data parent_folder_id type zif_googlepoc_drive_api=>file_resource_id.
+    data parent_folder_ids type zif_googlepoc_drive_api=>file_resource_ids.
+    data file type zif_googlepoc_drive_api=>file_resource.
+    data timestamp type timestamp.
+
+    data is_connection_established type abap_bool.
+    me->is_connection_established( changing is_connection_established = is_connection_established ).
+    if is_connection_established = abap_true.
+      parent_folder_id = me->get_drive_folder_id( ).
+      if parent_folder_id is not initial.
+        append parent_folder_id to parent_folder_ids.
       endif.
 
-      get time stamp field data(lv_timestamp).
-      data(ls_file_resource) = me->mo_drive_api->multipart_upload(
-        ir_data         = me->mr_binary_data_to_publish
-        iv_name         = |EXPORT{ conv string( lv_timestamp ) }| "#EC NOTEXT
-        iv_mime_type    = zif_googlepoc_drive_api=>c_google_spreadsheet_mime_type
-        iv_content_type = cl_salv_bs_lex_format_xlsx=>c_xlsx_mime_type
-        it_parents      = lt_parent_folder_ids
-      ).
-
-      target_url_to_launch = ls_file_resource-web_view_link.
+      get time stamp field timestamp.
+      file = me->drive_api->multipart_upload(
+               data         = me->binary_data_to_publish
+               name         = |ALV_EXPORT_{ conv string( timestamp ) }|
+               mime_type    = zif_googlepoc_drive_api=>supported_mime_types-spreadsheet
+               content_type = xlsx_mime_type
+               parents      = parent_folder_ids ) ##NO_TEXT.
+      target_url_to_launch = file-web_view_link.
     endif.
   endmethod.
 
 
   method if_salv_jpb_badi_data_publish~is_connection_established.
-    if me->mo_drive_api is not bound.
+    if me->drive_api is initial.
       try.
-          me->mo_drive_api = new zcl_googlepoc_drive_impl(
-            iv_oa2c_profile_name = me->oa2c_profile_name
-            io_drive_json_api    = new zcl_googlepoc_drive_ui2_json( )
-          ).
+          me->drive_api = new zcl_googlepoc_drive_impl(
+                            oa2c_profile_name = me->oa2c_profile_name
+                            json_api          = new zcl_googlepoc_drive_ui2_json( ) ).
         catch cx_oa2c_config_not_found
               cx_oa2c_config_profile_assign
-              cx_oa2c_missing_authorization into data(lo_config_not_found_exc).
+              cx_oa2c_missing_authorization
+              cx_oa2c_config_profile_multi
+              cx_oa2c_kernel_too_old into data(oa2c_exc).
           raise exception type cx_salv_connection_error
             exporting
-              previous = lo_config_not_found_exc.
-        catch cx_oa2c_kernel_too_old into data(lo_kernel_too_old_exc).
-          raise exception type cx_salv_connection_error
-            exporting
-              previous = lo_kernel_too_old_exc.
+              previous = oa2c_exc.
       endtry.
     endif.
 
-    is_connection_established = me->mo_drive_api->has_valid_token( ).
+    is_connection_established = me->drive_api->has_valid_token( ).
+  endmethod.
+
+
+  method if_salv_jpb_badi_data_publish~get_authentication_type ##NEEDED.
+  endmethod.
+
+
+  method if_salv_jpb_badi_data_publish~get_executable_location ##NEEDED.
+  endmethod.
+
+
+  method if_salv_jpb_badi_data_publish~get_file_download_info ##NEEDED.
   endmethod.
 
 

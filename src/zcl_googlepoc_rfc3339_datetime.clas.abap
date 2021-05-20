@@ -1,14 +1,26 @@
 "! <p>
-"! Converts ABAP Date/Time values with optional UTC offset to RFC 3339 compliant
-"! Date/Time values.
+"! Converts <strong>ABAP Date/Time</strong> values with optional UTC offset to <strong>RFC 3339
+"! compliant Date/Time</strong> values.
 "! </p>
 "!
 "! <p>
-"! Author:  Sebastian Machhausen, SAP SE <br/>
-"! Version: 0.0.4<br/>
+"! See RFC 3339 at https://tools.ietf.org/html/rfc3339
 "! </p>
 "!
-"! See RFC 3339 at https://tools.ietf.org/html/rfc3339
+"! <p>
+"! Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved.
+"! <br>
+"! This file is licensed under the SAP SAMPLE CODE LICENSE AGREEMENT except as noted otherwise in
+"! the LICENSE FILE
+"! (https://github.com/SAP-samples/abap-alv-google-upload-sheet/blob/master/LICENSES/Apache-2.0.txt).
+"! <br>
+"! <br>
+"! Note that the sample code includes calls to the Google Drive APIs which calls are licensed under
+"! the Creative Commons Attribution 3.0 License (https://creativecommons.org/licenses/by/3.0/) in
+"! accordance with Google's Developer Site Policies
+"! (https://developers.google.com/terms/site-policies). Furthermore, the use of the Google Drive
+"! service is subject to applicable agreements with Google Inc.
+"! </p>
 class zcl_googlepoc_rfc3339_datetime definition
   public
   create public
@@ -19,33 +31,34 @@ class zcl_googlepoc_rfc3339_datetime definition
 
     types:
       "! Type describing a <em>Date/Time</em> value.
-      begin of ys_date_time,
+      begin of date_time,
         "! The date part.
         date                    type d,
 
         "! The time part.
         time                    type t,
 
-        "! The time difference from the UTC reference time in minutes, e.g.
-        "! -90 for a local to UTC difference of -1:30 hours.
+        "! The time difference from the UTC reference time in minutes, e.g. -90 for a local to UTC
+        "! difference of -1:30 hours.
         local_to_utc_difference type i,
-      end of ys_date_time.
+      end of date_time.
 
-    "! Converts the given ABAP Date/Time value to an RC 3339 Date/Time.
+    "! Converts the given <strong>ABAP Date/Time</strong> to an <strong>RFC 3339 Date/Time</strong>
+    "! value.
     "!
-    "! @parameter is_input_date_time | The input ABAP Date/Time value.
-    "! @parameter rv_output_date_time | The output RC 3339 Date/Time value.
+    "! @parameter input | The input <strong>ABAP Date/Time</strong> value.
+    "! @parameter result | The output <strong>RFC 3339 Date/Time</strong> value.
     methods convert
       importing
-        is_input_date_time         type ys_date_time
+        input         type date_time
       returning
-        value(rv_output_date_time) type string.
+        value(result) type string.
 
 
   private section.
 
     "! The number of minutes in one hour.
-    constants c_minutes_per_hour type i value 60.
+    constants minutes_per_hour type i value 60.
 
 
 endclass.
@@ -55,40 +68,27 @@ class zcl_googlepoc_rfc3339_datetime implementation.
 
 
   method convert.
-    rv_output_date_time =
-         |{ is_input_date_time-date(4) }-|
-      && |{ is_input_date_time-date+4(2) }-|
-      && |{ is_input_date_time-date+6(2) }|.                "#EC NOTEXT
+    data hours type string.
+    data minutes type string.
 
-    if is_input_date_time-time is not initial.
-      rv_output_date_time = rv_output_date_time
-        && |T|
-        && |{ is_input_date_time-time(2) }:|
-        && |{ is_input_date_time-time+2(2) }:|
-        && |{ is_input_date_time-time+4(2) }|.              "#EC NOTEXT
+    result = |{ input-date(4) }-{ input-date+4(2) }-{ input-date+6(2) }| ##NO_TEXT.
 
-      if is_input_date_time-local_to_utc_difference is initial.
-        rv_output_date_time = rv_output_date_time && `Z`.   "#EC NOTEXT
+    if input-time is not initial.
+      result = result
+            && |T{ input-time(2) }:{ input-time+2(2) }:{ input-time+4(2) }| ##NO_TEXT.
+
+      if input-local_to_utc_difference is initial.
+        result = result && `Z` ##NO_TEXT.
       else.
-        data(lv_hours) = |{ abs( is_input_date_time-local_to_utc_difference
-                                 div c_minutes_per_hour
-                               )
-                          }|.
-        data(lv_minutes) = |{ abs( is_input_date_time-local_to_utc_difference
-                                   mod c_minutes_per_hour
-                                 )
-                            }|.
+        hours = |{ abs( input-local_to_utc_difference div minutes_per_hour ) }|.
+        minutes = |{ abs( input-local_to_utc_difference mod minutes_per_hour ) }|.
 
-        if is_input_date_time-local_to_utc_difference < 0.
-          rv_output_date_time = rv_output_date_time
-            && `-`
-            && |{ lv_hours alpha = in width = 2 }:|
-            && |{ lv_minutes alpha = in width = 2 }|.       "#EC NOTEXT
+        if input-local_to_utc_difference < 0.
+          result = result
+                && |-{ hours alpha = in width = 2 }:{ minutes alpha = in width = 2 }| ##NO_TEXT.
         else.
-          rv_output_date_time = rv_output_date_time
-            && `+`
-            && |{ lv_hours alpha = in width = 2 }:|
-            && |{ lv_minutes alpha = in width = 2 }|.       "#EC NOTEXT
+          result = result
+                && |+{ hours alpha = in width = 2 }:{ minutes alpha = in width = 2 }| ##NO_TEXT.
         endif.
       endif.
     endif.
