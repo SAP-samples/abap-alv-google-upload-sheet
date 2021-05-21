@@ -114,11 +114,11 @@ class zcl_googlepoc_cert_validation implementation.
         if certificate_index is not initial.
           try.
               result = cl_abap_x509_certificate=>get_instance(
-                certificate_binaries[ certificate_index ] ).
+                         certificate_binaries[ certificate_index ] ).
             catch cx_abap_x509_certificate ##NO_HANDLER.
           endtry.
         endif.
-      catch cx_abap_pse into data(pse_exc) ##NO_HANDLER.
+      catch cx_abap_pse ##NO_HANDLER.
     endtry.
   endmethod.
 
@@ -134,7 +134,8 @@ class zcl_googlepoc_cert_validation implementation.
     result = abap_false.
 
     try.
-        cl_abap_pse=>get_pse_info(  exporting
+        cl_abap_pse=>get_pse_info(
+          exporting
             iv_context     = default_pse_context
             iv_application = default_pse_application ).
         result = abap_true.
