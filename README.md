@@ -1,17 +1,18 @@
 [![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/abap-alv-google-upload-sheet)](https://api.reuse.software/info/github.com/SAP-samples/abap-alv-google-upload-sheet)
 
-# Description
+# Integration of Google Sheets into ABAP List Viewer
 
+## Descriptions
 This project comprises an archive containing sample source code for the integration of Google Sheets into the ABAP List Viewer (ALV) component. Thus, this sample code helps you to implement and configure the export of ALV grid data from SAP GUI directly to Google Drive and display exported data snapshots automatically in Google Sheets.
 
-# Minimum Requirements
+## Minimum Requirements
 
 - This functionality is only available for certain SAP NetWeaver support packages, see [note 2592115](http://service.sap.com/sap/support/notes/2592115).
 - After installation of the corresponding Support Package, it is **mandatory** to implement [note 2624404](http://service.sap.com/sap/support/notes/2624404) (ALV GUI: BAdi Export Integration Corrections).
 
-# Download and Installation
+## Download and Installation
 
-## Proceed as follows to make best use of the sample code:
+### Proceed as follows to make best use of the sample code:
 
 1. Clone the repository or use the [abapGit client](https://docs.abapgit.org/) to [import](https://docs.abapgit.org/guide-import-zip.html) the sources into your SAP system.
 2. Setup the Google API Endpoint (see chapter 2.2 in [Export of ALV Grid Data to Google Sheets](https://www.sap.com/documents/2018/07/56e0dd6d-0f7d-0010-87a3-c30de2ffd8ff.html) )
@@ -21,20 +22,20 @@ This project comprises an archive containing sample source code for the integrat
 6. Check the Connection (see chapter 2.5. [Export of ALV Grid Data to Google Sheets](https://www.sap.com/documents/2018/07/56e0dd6d-0f7d-0010-87a3-c30de2ffd8ff.html))
 7. ALV ABAP administration (see chapter 3.2 [Export of ALV Grid Data to Google Sheets](https://www.sap.com/documents/2018/07/56e0dd6d-0f7d-0010-87a3-c30de2ffd8ff.html))
 
-# Configuration Guide
+## Configuration Guide
 
 See the full documentation [Export of ALV Grid Data to Google Sheets](https://www.sap.com/documents/2018/07/56e0dd6d-0f7d-0010-87a3-c30de2ffd8ff.html) available in the SAP Community.
 
-# Limitations
+## Limitations
 
 - The redirect URL called by Google requires a public top level domain server. 
 - There is no way to use an Enterprise account or logon to Google Drive via SSO  – every end user needs a regular Google account.
 
-# Known Issues
+## Known Issues
 
 None.
 
-# How to obtain support
+## How to obtain support
 
 **No SAP standard support** provided: Consult **SAP [note 2896606](http://service.sap.com/sap/support/notes/2896606) for details**.
 
@@ -42,11 +43,11 @@ You can ask your questions concerning this functionality in the [SAP Community](
 
 You find an overview of all ALV questions under: [https://answers.sap.com/topics/alv.html](https://answers.sap.com/topics/alv.html).
 
-# Contribution
+## Contribution
 
 An SAP Code Sample such as this is open software but is not quite a typical full-blown open source project. If you come across a problem, we’d encourage you to check the project’s [issue tracker](https://github.com/SAP-samples/abap-alv-google-upload-sheet/issues) and to [file a new issue](https://github.com/SAP-samples/abap-alv-google-upload-sheet/issues/new) if needed. If you are especially passionate about something you’d like to improve, you are welcome to fork the repository and submit improvements or changes as a pull request.
 
-# License
+## License
 Copyright (c) 2021 SAP SE or an SAP affiliate company. All rights reserved. This project is licensed under the Apache Software License, version 2.0 except as noted otherwise in the [LICENSE](LICENSES/Apache-2.0.txt) file.
 
 Note that the sample code includes calls to the Google Drive APIs which calls are licensed under the Creative Commons Attribution 3.0 License _(_[_https://creativecommons.org/licenses/by/3.0/_](https://creativecommons.org/licenses/by/3.0/)_)_ in accordance with Google&#39;s Developer Site Policies _(_[_https://developers.google.com/terms/site-policies_](https://developers.google.com/terms/site-policies)_)._ Furthermore, the use of the Google Drive service is subject to applicable agreements with Google Inc.
