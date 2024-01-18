@@ -2,13 +2,13 @@
 
 # Integration of Google Sheets into ABAP List Viewer
 
-## Descriptions
-This project comprises an archive containing sample source code for the integration of Google Sheets into the ABAP List Viewer (ALV) component. Thus, this sample code helps you to implement and configure the export of ALV grid data from SAP GUI directly to Google Drive and display exported data snapshots automatically in Google Sheets.
-
-### Important note
-We are happy to announce that Google Cloud and SAP have expanded their partnership to enable a native integration between Google Workspace and SAP S/4HANA. Our customers now have the possibility to export data from all important UI Tables to Google Sheets as well as a table import from Google Sheets to the Upload General Journal Entries application. This initial set of features is included in SAP S/4HANA Cloud 2208 and S/4HANA 2022, leveraging an SAP Business Technology Platform service (additional license required: SAP Document Management Service, integration option). 
+## Important note before starting your project setup/configuration
+We are happy to announce that Google Cloud and SAP have expanded their partnership to enable a native integration between Google Workspace and SAP S/4HANA. Our customers now have the possibility to export data from all important UI Tables to Google Sheets as well as a table import from Google Sheets to the Upload General Journal Entries application. This initial set of features is included in **SAP S/4HANA Cloud 2208 and S/4HANA 2022**, leveraging an SAP Business Technology Platform service (additional license required: SAP Document Management Service, integration option). 
 
 Please feel free to check out our [public documentation and set-up guide](https://help.sap.com/docs/DOCUMENT_MANAGEMENT/f6e70dd4bffa4b65965b43feed4c9429/594bf95dbab64358aef97a73296b6054.html) as well as our [central blog post](https://blogs.sap.com/2022/10/18/seamless-integration-between-sap-s-4hana-google-workspace/).
+
+## Project Description
+This project comprises an archive containing sample source code for the integration of Google Sheets into the ABAP List Viewer (ALV) component. Thus, this sample code helps you to implement and configure the export of ALV grid data from SAP GUI directly to Google Drive and display exported data snapshots automatically in Google Sheets.
 
 ## Minimum Requirements
 
