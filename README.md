@@ -7,7 +7,7 @@ We are happy to announce that Google Cloud and SAP have expanded their partnersh
 
 Please feel free to check out our [public documentation and set-up guide](https://help.sap.com/docs/DOCUMENT_MANAGEMENT/f6e70dd4bffa4b65965b43feed4c9429/594bf95dbab64358aef97a73296b6054.html) as well as our
 blog posts:
-- [Seamless integration between SAP S/4HANA & Google Workspace](https://blogs.sap.com/2022/10/18/seamless-integration-between-sap-s-4hana-google-workspace/)
+- [Seamless integration between SAP S/4HANA & Google Workspace](https://community.sap.com/t5/enterprise-resource-planning-blogs-by-sap/seamless-integration-between-sap-s-4hana-google-workspace/ba-p/13535025)
 - [SAP’s UI Technologies enabling Google Workspace](https://community.sap.com/t5/technology-blogs-by-sap/sap-s-ui-technologies-enabling-google-workspace/ba-p/13540756)
 
 ## Project Description
